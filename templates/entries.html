@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Entries - Mental Wellness Bot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
+        .navbar { background: #667eea; color: white; padding: 1rem 2rem; }
+        .navbar a { color: white; text-decoration: none; margin-right: 1.5rem; }
+        .container { max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+        h2 { color: #667eea; margin-bottom: 1.5rem; }
+        .entry { background: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .entry-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+        .entry-date { color: #999; font-size: 0.9rem; }
+        .mood { display: inline-block; padding: 3px 8px; background: #f0f0f0; border-radius: 20px; font-weight: 500; color: #667eea; }
+        .entry-journal { margin: 1rem 0; color: #555; line-height: 1.6; }
+        .entry-exercise { color: #666; font-size: 0.95rem; }
+        .no-entries { background: white; padding: 2rem; border-radius: 10px; text-align: center; color: #999; }
+        .add-btn { display: inline-block; padding: 10px 20px; background: #667eea; color: white; text-decoration: none; border-radius: 5px; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('dashboard') }}">[Back to Dashboard]</a>
+    </div>
+    
+    <div class="container">
+        <h2>My Journal Entries</h2>
+        <a href="{{ url_for('add_entry') }}" class="add-btn">+ Add New Entry</a>
+        
+        {% if entries %}
+            {% for entry in entries %}
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="mood">{{ entry.mood }}</span>
+                    <span class="entry-date">{{ entry.date }}</span>
+                </div>
+                {% if entry.journal %}
+                <div class="entry-journal">{{ entry.journal }}</div>
+                {% endif %}
+                {% if entry.exercise and entry.exercise != 'None' %}
+                <div class="entry-exercise"><strong>Exercise:</strong> {{ entry.exercise }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="no-entries">
+            <p>No entries yet. <a href="{{ url_for('add_entry') }}">Create your first entry!</a></p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

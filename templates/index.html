@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Wellness Bot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        .container { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 10px 40px rgba(0,0,0,0.3); text-align: center; max-width: 500px; }
+        h1 { color: #667eea; margin-bottom: 1rem; }
+        p { color: #666; margin-bottom: 2rem; line-height: 1.6; }
+        .buttons { display: flex; gap: 1rem; justify-content: center; }
+        a { padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; transition: 0.3s; }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover { background: #5568d3; }
+        .btn-secondary { background: #f0f0f0; color: #667eea; border: 2px solid #667eea; }
+        .btn-secondary:hover { background: #667eea; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mental Wellness Bot</h1>
+        <p>Your personal mental wellness companion. Track your mood, journal entries, and manage stress.</p>
+        <div class="buttons">
+            <a href="{{ url_for('login') }}" class="btn-primary">Login</a>
+            <a href="{{ url_for('register') }}" class="btn-secondary">Register</a>
+        </div>
+    </div>
+</body>
+</html>

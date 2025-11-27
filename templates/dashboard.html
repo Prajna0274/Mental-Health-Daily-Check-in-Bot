@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mental Wellness Bot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
+        .navbar { background: #667eea; color: white; padding: 1rem 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+        .navbar h1 { font-size: 24px; }
+        .nav-links { display: flex; gap: 1.5rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; }
+        .nav-links a:hover { text-decoration: underline; }
+        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
+        .welcome { background: white; padding: 2rem; border-radius: 10px; margin-bottom: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .welcome h2 { color: #667eea; margin-bottom: 1rem; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
+        .card { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
+        .card h3 { color: #667eea; margin-bottom: 0.5rem; }
+        .card p { color: #666; margin-bottom: 1rem; }
+        .btn { padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s; }
+        .btn-primary { background: #667eea; color: white; }
+        .btn-primary:hover { background: #5568d3; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>Mental Wellness Bot</h1>
+        <div class="nav-links">
+            <a href="{{ url_for('add_entry') }}">+ Add Entry</a>
+            <a href="{{ url_for('list_entries') }}">My Entries</a>
+            <a href="{{ url_for('stats') }}">Stats</a>
+            <a href="{{ url_for('exercises') }}">Exercises</a>
+            <a href="{{ url_for('export_json') }}">Export</a>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="welcome">
+            <h2>Welcome, {{ username }}!</h2>
+            <p>Your mental wellness companion is here to help you track your mood, manage stress, and build positive habits.</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>📝 Quick Stats</h3>
+                <p>Total entries this week: <strong>{{ stats.total_entries }}</strong></p>
+                <p>Exercises done: <strong>{{ stats.exercises_done }}</strong></p>
+                <a href="{{ url_for('stats') }}" class="btn btn-primary">View Full Stats</a>
+            </div>
+            
+            <div class="card">
+                <h3>📓 Journal Entry</h3>
+                <p>Track your mood and daily reflections</p>
+                <a href="{{ url_for('add_entry') }}" class="btn btn-primary">Add Entry</a>
+            </div>
+            
+            <div class="card">
+                <h3>🧘 Guided Exercises</h3>
+                <p>Manage stress with therapeutic exercises</p>
+                <a href="{{ url_for('exercises') }}" class="btn btn-primary">View Exercises</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

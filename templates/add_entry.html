@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Entry - Mental Wellness Bot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
+        .navbar { background: #667eea; color: white; padding: 1rem 2rem; }
+        .navbar a { color: white; text-decoration: none; margin-right: 1.5rem; }
+        .container { max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+        .form-container { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h2 { color: #667eea; margin-bottom: 1.5rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; color: #333; font-weight: 500; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; font-family: inherit; }
+        input:focus, select:focus, textarea:focus { outline: none; border-color: #667eea; box-shadow: 0 0 5px rgba(102, 126, 234, 0.3); }
+        textarea { resize: vertical; min-height: 150px; }
+        .checkbox-group { display: flex; align-items: center; }
+        input[type="checkbox"] { width: auto; margin-right: 0.5rem; }
+        button { width: 100%; padding: 10px; background: #667eea; color: white; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        button:hover { background: #5568d3; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{{ url_for('dashboard') }}">[Back to Dashboard]</a>
+    </div>
+    
+    <div class="container">
+        <div class="form-container">
+            <h2>Add Journal Entry</h2>
+            <form method="POST">
+                <div class="form-group">
+                    <label>How are you feeling?</label>
+                    <select name="mood" required>
+                        <option value="">Select mood...</option>
+                        <option value="Happy">Happy</option>
+                        <option value="Sad">Sad</option>
+                        <option value="Anxious">Anxious</option>
+                        <option value="Calm">Calm</option>
+                        <option value="Stressed">Stressed</option>
+                        <option value="Neutral">Neutral</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Journal (optional)</label>
+                    <textarea name="journal" placeholder="Write about your day..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>Exercise (optional)</label>
+                    <select name="exercise">
+                        <option value="None">None</option>
+                        <option value="Breathing">Breathing Exercise</option>
+                        <option value="Grounding">Grounding Technique</option>
+                        <option value="Affirmation">Positive Affirmation</option>
+                        <option value="Meditation">Mini Meditation</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="breathing" name="unusual_breathing">
+                        <label for="breathing" style="margin: 0;">Experienced unusual breathing</label>
+                    </div>
+                </div>
+                
+                <button type="submit">Save Entry</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
