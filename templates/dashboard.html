@@ -6,62 +6,299 @@
     <title>Dashboard - Mental Wellness Bot</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f5f5f5; }
-        .navbar { background: #667eea; color: white; padding: 1rem 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
-        .navbar h1 { font-size: 24px; }
-        .nav-links { display: flex; gap: 1.5rem; }
-        .nav-links a { color: white; text-decoration: none; font-weight: 500; }
-        .nav-links a:hover { text-decoration: underline; }
-        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1rem; }
-        .welcome { background: white; padding: 2rem; border-radius: 10px; margin-bottom: 2rem; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .welcome h2 { color: #667eea; margin-bottom: 1rem; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem; }
-        .card { background: white; padding: 1.5rem; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
-        .card h3 { color: #667eea; margin-bottom: 0.5rem; }
-        .card p { color: #666; margin-bottom: 1rem; }
-        .btn { padding: 10px 20px; border-radius: 5px; text-decoration: none; font-weight: 600; display: inline-block; transition: 0.3s; }
-        .btn-primary { background: #667eea; color: white; }
-        .btn-primary:hover { background: #5568d3; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: #f0f4f8;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .navbar-brand { font-size: 24px; font-weight: bold; }
+        .nav-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1rem; }
+        
+        .welcome {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+        }
+        
+        .welcome h2 { color: #667eea; margin-bottom: 0.5rem; font-size: 28px; }
+        .welcome p { color: #666; line-height: 1.6; }
+        
+        .affirmation-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .affirmation-section h3 { margin-bottom: 1rem; font-size: 18px; }
+        .affirmation-text { font-size: 20px; font-weight: bold; font-style: italic; }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .card h3 { color: #667eea; margin-bottom: 1rem; font-size: 20px; }
+        .card-stat { font-size: 28px; font-weight: bold; color: #667eea; margin: 1rem 0; }
+        .card-stat-label { color: #999; font-size: 12px; text-transform: uppercase; }
+        .card p { color: #666; margin: 0.5rem 0; }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: #e5e7eb;
+            color: #667eea;
+        }
+        
+        .btn-secondary:hover {
+            background: #d1d5db;
+        }
+        
+        .achievement {
+            text-align: center;
+            padding: 1rem;
+            background: #fff8e1;
+            border-radius: 8px;
+            border: 2px solid #fbbf24;
+        }
+        
+        .achievement-icon { font-size: 32px; margin: 0.5rem 0; }
+        .achievement-name { font-weight: bold; color: #92400e; }
+        .achievement-desc { font-size: 12px; color: #b45309; }
+        
+        .exercises-section h3 { color: #667eea; margin: 2rem 0 1rem; font-size: 22px; }
+        
+        .exercise-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .exercise-btn {
+            background: white;
+            border: 2px solid #667eea;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .exercise-btn:hover {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        .exercise-btn-icon { font-size: 32px; margin-bottom: 0.5rem; }
+        
+        .tip-box {
+            background: #ecfdf5;
+            border-left: 4px solid #10b981;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+        
+        .tip-box h4 { color: #10b981; margin-bottom: 0.5rem; }
+        .tip-box p { color: #047857; }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <h1>Mental Wellness Bot</h1>
+        <div class="navbar-brand">🌟 Mental Wellness Bot</div>
         <div class="nav-links">
-            <a href="{{ url_for('add_entry') }}">+ Add Entry</a>
-            <a href="{{ url_for('list_entries') }}">My Entries</a>
-            <a href="{{ url_for('stats') }}">Stats</a>
-            <a href="{{ url_for('exercises') }}">Exercises</a>
-            <a href="{{ url_for('export_json') }}">Export</a>
-            <a href="{{ url_for('logout') }}">Logout</a>
+            <a href="{{ url_for('add_entry') }}">📝 Add Entry</a>
+            <a href="{{ url_for('list_entries') }}">📚 Entries</a>
+            <a href="{{ url_for('stats') }}">📊 Stats</a>
+            <a href="{{ url_for('chatbot') }}">💬 Chat</a>
+            <a href="{{ url_for('logout') }}">🚪 Logout</a>
         </div>
     </div>
     
     <div class="container">
+        <!-- Welcome Section -->
         <div class="welcome">
-            <h2>Welcome, {{ username }}!</h2>
-            <p>Your mental wellness companion is here to help you track your mood, manage stress, and build positive habits.</p>
+            <h2>Welcome back, {{ username }}! 👋</h2>
+            <p>You're doing an amazing job taking care of your mental health. Keep up the great work!</p>
         </div>
         
+        <!-- Affirmation Section -->
+        <div class="affirmation-section">
+            <h3>💭 Today's Affirmation</h3>
+            <div class="affirmation-text">{{ affirmation }}</div>
+        </div>
+        
+        <!-- Quick Stats -->
         <div class="grid">
             <div class="card">
-                <h3>📝 Quick Stats</h3>
-                <p>Total entries this week: <strong>{{ stats.total_entries }}</strong></p>
-                <p>Exercises done: <strong>{{ stats.exercises_done }}</strong></p>
-                <a href="{{ url_for('stats') }}" class="btn btn-primary">View Full Stats</a>
+                <h3>📊 This Week</h3>
+                <div class="card-stat">{{ stats.total_entries }}</div>
+                <div class="card-stat-label">Entries Logged</div>
+                <p>Keep tracking your mood and emotions</p>
             </div>
             
             <div class="card">
-                <h3>📓 Journal Entry</h3>
-                <p>Track your mood and daily reflections</p>
-                <a href="{{ url_for('add_entry') }}" class="btn btn-primary">Add Entry</a>
+                <h3>🔥 Your Streak</h3>
+                <div class="card-stat">{{ stats.streak }}</div>
+                <div class="card-stat-label">Days in a Row</div>
+                <p>Amazing consistency! Keep going!</p>
             </div>
             
             <div class="card">
-                <h3>🧘 Guided Exercises</h3>
-                <p>Manage stress with therapeutic exercises</p>
-                <a href="{{ url_for('exercises') }}" class="btn btn-primary">View Exercises</a>
+                <h3>🎯 Exercises</h3>
+                <div class="card-stat">{{ stats.exercises_done }}</div>
+                <div class="card-stat-label">This Week</div>
+                <p>Physical wellness boost</p>
             </div>
+            
+            <div class="card">
+                <h3>😊 Mood Score</h3>
+                <div class="card-stat">{{ "%.1f"|format(stats.avg_sentiment) }}</div>
+                <div class="card-stat-label">Out of 1.0</div>
+                <p>Your emotional average</p>
+            </div>
+        </div>
+        
+        <!-- Wellness Tip -->
+        <div class="tip-box">
+            <h4>💡 Today's Wellness Tip</h4>
+            <p>{{ tip }}</p>
+        </div>
+        
+        <!-- Achievements -->
+        {% if achievements %}
+        <h3 style="color: #667eea; margin: 2rem 0 1rem;">🏆 Your Achievements</h3>
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));">
+            {% for achievement in achievements %}
+            <div class="achievement">
+                <div class="achievement-icon">{{ achievement.icon }}</div>
+                <div class="achievement-name">{{ achievement.name }}</div>
+                <div class="achievement-desc">{{ achievement.desc }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- Interactive Exercises -->
+        <div class="exercises-section">
+            <h3>✨ Interactive Wellness Exercises</h3>
+            <p style="color: #666; margin-bottom: 1.5rem;">Choose an exercise to get started on your wellness journey:</p>
+            
+            <div class="exercise-cards">
+                <a href="{{ url_for('breathing_exercise') }}" class="exercise-btn">
+                    <div class="exercise-btn-icon">🌬️</div>
+                    <div>Breathing<br>Exercise</div>
+                </a>
+                
+                <a href="{{ url_for('meditation') }}" class="exercise-btn">
+                    <div class="exercise-btn-icon">🧘</div>
+                    <div>Guided<br>Meditation</div>
+                </a>
+                
+                <a href="{{ url_for('quick_workout') }}" class="exercise-btn">
+                    <div class="exercise-btn-icon">💪</div>
+                    <div>Quick<br>Workout</div>
+                </a>
+                
+                <a href="{{ url_for('chatbot') }}" class="exercise-btn">
+                    <div class="exercise-btn-icon">💬</div>
+                    <div>AI<br>Companion</div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Quick Actions -->
+        <div style="margin: 2rem 0; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="{{ url_for('add_entry') }}" class="btn btn-primary">+ New Journal Entry</a>
+            <a href="{{ url_for('stats') }}" class="btn btn-secondary">View Detailed Stats</a>
+            <a href="{{ url_for('list_entries') }}" class="btn btn-secondary">View All Entries</a>
         </div>
     </div>
 </body>

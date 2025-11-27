@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Wellness Chatbot - Mental Wellness Bot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            height: 80vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 24px; }
+        .header a { color: white; text-decoration: none; cursor: pointer; }
+        .header a:hover { opacity: 0.8; }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: #f9fafb;
+        }
+        
+        .message {
+            margin: 15px 0;
+            display: flex;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .message.user {
+            justify-content: flex-end;
+        }
+        
+        .message.bot {
+            justify-content: flex-start;
+        }
+        
+        .message-content {
+            max-width: 70%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            word-wrap: break-word;
+        }
+        
+        .message.user .message-content {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 12px 3px 12px 12px;
+        }
+        
+        .message.bot .message-content {
+            background: #e5e7eb;
+            color: #333;
+            border-radius: 3px 12px 12px 12px;
+        }
+        
+        .input-section {
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 10px;
+        }
+        
+        input {
+            flex: 1;
+            padding: 12px 16px;
+            border: 2px solid #e5e7eb;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        button {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            color: #999;
+        }
+        
+        .empty-state h2 { color: #667eea; margin-bottom: 10px; }
+        
+        .quick-prompts {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .quick-prompt {
+            padding: 10px;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+        
+        .quick-prompt:hover {
+            background: #e5e7eb;
+            border-color: #667eea;
+        }
+        
+        .timestamp {
+            font-size: 11px;
+            color: #999;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💬 AI Wellness Companion</h1>
+            <a href="{{ url_for('dashboard') }}">✕</a>
+        </div>
+        
+        <div class="chat-messages" id="chatMessages">
+            {% if not chat_history %}
+            <div class="empty-state">
+                <h2>Welcome to your AI Wellness Companion! 👋</h2>
+                <p>I'm here to listen, support, and help with your mental wellness journey.</p>
+                <p>You can talk about:</p>
+                <div class="quick-prompts">
+                    <div class="quick-prompt" onclick="sendMessage('I am feeling anxious today')">😰 Feeling anxious</div>
+                    <div class="quick-prompt" onclick="sendMessage('How can I improve my mood')">😊 Improve mood</div>
+                    <div class="quick-prompt" onclick="sendMessage('I cannot sleep well')">😴 Sleep issues</div>
+                    <div class="quick-prompt" onclick="sendMessage('What exercises help with stress')">🏃 Stress relief</div>
+                </div>
+            </div>
+            {% else %}
+            {% for chat in chat_history %}
+            <div class="message user">
+                <div class="message-content">
+                    {{ chat.user }}
+                    <div class="timestamp">{{ chat.timestamp | replace('T', ' ').split('.')[0] }}</div>
+                </div>
+            </div>
+            <div class="message bot">
+                <div class="message-content">
+                    {{ chat.bot }}
+                </div>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+        
+        <div class="input-section">
+            <input 
+                type="text" 
+                id="userInput" 
+                placeholder="Tell me how you're feeling..."
+                onkeypress="if(event.key === 'Enter') sendMessage()"
+            />
+            <button onclick="sendMessage()" id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage(msg = null) {
+            const input = document.getElementById('userInput');
+            const message = msg || input.value.trim();
+            
+            if (!message) return;
+            
+            // Add user message to chat
+            const messagesDiv = document.getElementById('chatMessages');
+            if (messagesDiv.querySelector('.empty-state')) {
+                messagesDiv.innerHTML = '';
+            }
+            
+            const userMsgEl = document.createElement('div');
+            userMsgEl.className = 'message user';
+            userMsgEl.innerHTML = `<div class="message-content">${escapeHtml(message)}</div>`;
+            messagesDiv.appendChild(userMsgEl);
+            
+            input.value = '';
+            input.focus();
+            
+            // Disable send button
+            document.getElementById('sendBtn').disabled = true;
+            
+            // Send to server
+            fetch('{{ url_for("api_chat") }}', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: message })
+            })
+            .then(r => r.json())
+            .then(data => {
+                const botMsgEl = document.createElement('div');
+                botMsgEl.className = 'message bot';
+                botMsgEl.innerHTML = `<div class="message-content">${escapeHtml(data.bot_response)}</div>`;
+                messagesDiv.appendChild(botMsgEl);
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                document.getElementById('sendBtn').disabled = false;
+            })
+            .catch(err => {
+                console.error('Error:', err);
+                document.getElementById('sendBtn').disabled = false;
+            });
+            
+            messagesDiv.scrollTop = messagesDiv.scrollHeight;
+        }
+        
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+    </script>
+</body>
+</html>

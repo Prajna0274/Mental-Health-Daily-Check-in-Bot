@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guided Meditation - Mental Wellness Bot</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            padding: 40px;
+            text-align: center;
+        }
+        h1 { color: #1e3c72; margin-bottom: 10px; font-size: 28px; }
+        .subtitle { color: #666; margin-bottom: 30px; }
+        
+        .visualization {
+            width: 250px;
+            height: 250px;
+            margin: 30px auto;
+            position: relative;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 50px rgba(102, 126, 234, 0.5);
+            overflow: hidden;
+        }
+        
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+        
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+            animation: float 6s infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { transform: translateY(-200px) translateX(50px); opacity: 0; }
+        }
+        
+        .meditation-text {
+            position: absolute;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            z-index: 10;
+            animation: fadeInOut 4s infinite;
+        }
+        
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            25% { opacity: 1; }
+            75% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        .guidepace {
+            font-size: 16px;
+            color: white;
+            position: absolute;
+            bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .instructions {
+            background: #f0f4ff;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 4px solid #667eea;
+            text-align: left;
+        }
+        
+        .instructions h3 { color: #667eea; margin-bottom: 10px; }
+        .instruction-item { color: #666; margin: 8px 0; line-height: 1.6; }
+        
+        .duration-info {
+            background: #ecfdf5;
+            color: #10b981;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-start {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+        }
+        
+        .btn-start:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-back {
+            background: #e5e7eb;
+            color: #667eea;
+        }
+        
+        .btn-back:hover {
+            background: #d1d5db;
+        }
+        
+        .timer-display {
+            font-size: 14px;
+            color: #999;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧘 Guided Meditation</h1>
+        <p class="subtitle">Let go of stress and find your inner peace</p>
+        
+        <div class="visualization" id="visualization">
+            <div class="particles" id="particles"></div>
+            <div class="meditation-text" id="meditationText">Breathe</div>
+            <div class="guidepace" id="guidepace">5 mins</div>
+        </div>
+        
+        <div class="duration-info">
+            ⏱️ Duration: 5 minutes | Best practiced in a quiet space
+        </div>
+        
+        <div class="instructions">
+            <h3>How to Practice</h3>
+            <div class="instruction-item">✓ Find a comfortable sitting position</div>
+            <div class="instruction-item">✓ Close your eyes or maintain a soft gaze</div>
+            <div class="instruction-item">✓ Follow the guided steps and breathing pace</div>
+            <div class="instruction-item">✓ Let your mind be present without judgment</div>
+            <div class="instruction-item">✓ Return to your normal breathing when complete</div>
+        </div>
+        
+        <div class="timer-display" id="timerDisplay">
+            When you click start, focus on the visualization and breathing instructions
+        </div>
+        
+        <div class="controls">
+            <button class="btn-start" id="startBtn" onclick="startMeditation()">Start Meditation</button>
+            <a href="{{ url_for('dashboard') }}" style="text-decoration: none;">
+                <button class="btn-back">Back to Dashboard</button>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const steps = [
+            { text: "Find your center", duration: 10 },
+            { text: "Breathe in deeply", duration: 4 },
+            { text: "Hold gently", duration: 4 },
+            { text: "Breathe out slowly", duration: 4 },
+            { text: "Let go of stress", duration: 8 },
+            { text: "Feel peaceful", duration: 8 },
+            { text: "Be present", duration: 10 },
+            { text: "Open your awareness", duration: 8 },
+            { text: "Feel calm and centered", duration: 10 },
+            { text: "Gratitude for this moment", duration: 10 }
+        ];
+        
+        let isRunning = false;
+        
+        function createParticles() {
+            const container = document.getElementById('particles');
+            container.innerHTML = '';
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 30 + 10 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.bottom = '-50px';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                container.appendChild(particle);
+            }
+        }
+        
+        function startMeditation() {
+            if (isRunning) return;
+            
+            isRunning = true;
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('startBtn').textContent = 'Meditating...';
+            createParticles();
+            
+            let totalTime = 0;
+            let stepIndex = 0;
+            
+            function nextStep() {
+                if (stepIndex < steps.length) {
+                    const step = steps[stepIndex];
+                    document.getElementById('meditationText').textContent = step.text;
+                    totalTime += step.duration;
+                    
+                    const minutes = Math.floor(totalTime / 60);
+                    const seconds = totalTime % 60;
+                    document.getElementById('timerDisplay').textContent = 
+                        `Time: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+                    
+                    stepIndex++;
+                    setTimeout(nextStep, step.duration * 1000);
+                } else {
+                    completeMeditation();
+                }
+            }
+            
+            nextStep();
+        }
+        
+        function completeMeditation() {
+            isRunning = false;
+            document.getElementById('meditationText').textContent = 'Complete';
+            document.getElementById('meditationText').style.animation = 'none';
+            document.getElementById('meditationText').style.opacity = '1';
+            document.getElementById('timerDisplay').textContent = '✓ Meditation Complete! Well done.';
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('startBtn').textContent = 'Start Meditation';
+        }
+    </script>
+</body>
+</html>
