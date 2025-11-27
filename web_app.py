@@ -157,5 +157,11 @@ def stats():
     exercises = sum(1 for e in last7_entries if e.get('exercise') and e.get('exercise') != 'None')
     return render_template('stats.html', total=total, avg_sent=avg_sent, exercises=exercises)
 
+@app.route('/exercises')
+def exercises():
+    if 'username' not in session:
+        return redirect(url_for('login'))
+    return render_template('exercises.html')
+
 if __name__ == '__main__':
     app.run(debug=True)
