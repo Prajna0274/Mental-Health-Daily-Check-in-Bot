@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - Mental Health Daily Check-in Bot</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>Mental Wellness Bot</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="features.html" class="nav-link">Features</a></li>
+                <li><a href="getting-started.html" class="nav-link active">Get Started</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Getting Started Section -->
+    <section class="getting-started">
+        <div class="container">
+            <h1>Getting Started with Mental Wellness Bot</h1>
+            <p class="subtitle">Install and run the app in just a few minutes</p>
+
+            <!-- Prerequisites -->
+            <div class="section-card">
+                <h2>Prerequisites</h2>
+                <ul>
+                    <li><strong>Python 3.10 or higher</strong> — <a href="https://www.python.org/downloads/" target="_blank">Download here</a></li>
+                    <li><strong>pip</strong> — Comes with Python (usually)</li>
+                    <li><strong>Git</strong> (optional) — <a href="https://git-scm.com/download/" target="_blank">For cloning the repo</a></li>
+                </ul>
+                <p><strong>Check your Python version:</strong></p>
+                <pre><code>python --version</code></pre>
+            </div>
+
+            <!-- Installation -->
+            <div class="section-card">
+                <h2>Installation</h2>
+                <h3>Option 1: Clone from GitHub (Recommended)</h3>
+                <pre><code>git clone https://github.com/Prajna0274/Mental-Health-Daily-Check-in-Bot.git
+cd Mental-Health-Daily-Check-in-Bot
+pip install -r requirements.txt</code></pre>
+
+                <h3>Option 2: Download ZIP</h3>
+                <ol>
+                    <li>Go to <a href="https://github.com/Prajna0274/Mental-Health-Daily-Check-in-Bot" target="_blank">the GitHub repository</a></li>
+                    <li>Click "Code" → "Download ZIP"</li>
+                    <li>Extract the ZIP file</li>
+                    <li>Open terminal in the extracted folder</li>
+                    <li>Run: <code>pip install -r requirements.txt</code></li>
+                </ol>
+            </div>
+
+            <!-- Running the App -->
+            <div class="section-card">
+                <h2>Running the App</h2>
+                <p>Once dependencies are installed, launch the app:</p>
+                <pre><code>python mental_bot.py</code></pre>
+                <p>You should see the main menu:</p>
+                <pre><code>=== Mental Wellness Companion (text mode) ===
+1) Login
+2) Create account
+3) Add journal entry
+4) List my entries
+5) Weekly stats
+6) Exercises
+7) Talk to AI companion
+8) Export JSON
+9) Export PDF
+10) Delete my account
+0) Exit
+Choose an option:</code></pre>
+            </div>
+
+            <!-- First Steps -->
+            <div class="section-card">
+                <h2>Your First Steps</h2>
+                <ol>
+                    <li><strong>Create an Account</strong>
+                        <ul>
+                            <li>Select option <code>2</code> from the main menu</li>
+                            <li>Choose a username and password</li>
+                            <li>Your account is saved locally in <code>users.json</code></li>
+                        </ul>
+                    </li>
+                    <li><strong>Login</strong>
+                        <ul>
+                            <li>Select option <code>1</code></li>
+                            <li>Enter your username and password</li>
+                        </ul>
+                    </li>
+                    <li><strong>Add Your First Entry</strong>
+                        <ul>
+                            <li>Select option <code>3</code></li>
+                            <li>Choose your mood (Happy, Sad, Anxious, Neutral)</li>
+                            <li>Write about your day (optional)</li>
+                            <li>Log an exercise or meditation (optional)</li>
+                        </ul>
+                    </li>
+                    <li><strong>View Your Entries</strong>
+                        <ul>
+                            <li>Select option <code>4</code></li>
+                            <li>See all your saved journal entries with timestamps</li>
+                        </ul>
+                    </li>
+                    <li><strong>Check Your Stats</strong>
+                        <ul>
+                            <li>Select option <code>5</code></li>
+                            <li>View your 7-day wellness summary, mood trends, and streaks</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- Optional: Enable AI -->
+            <div class="section-card">
+                <h2>Optional: Enable AI Companion</h2>
+                <p>To use the AI chat feature (option 7), you need an OpenAI API key:</p>
+                <ol>
+                    <li>Go to <a href="https://platform.openai.com/account/api-keys" target="_blank">OpenAI API Keys</a></li>
+                    <li>Create a new API key</li>
+                    <li>Create a <code>.env</code> file in the project folder with:
+                        <pre><code>OPENAI_API_KEY=sk-your-key-here</code></pre>
+                    </li>
+                    <li>Restart the app and option 7 will work</li>
+                </ol>
+                <p><strong>Note:</strong> OpenAI charges for API usage. Check your account for pricing and set spending limits.</p>
+            </div>
+
+            <!-- File Structure -->
+            <div class="section-card">
+                <h2>Project Structure</h2>
+                <pre><code>Mental-Health-Daily-Check-in-Bot/
+├── mental_bot.py           # Main application
+├── requirements.txt        # Python dependencies
+├── users.json              # Stored user accounts
+├── entries.json            # Journal entries
+├── .env                    # API keys (create this)
+├── .gitignore             # Git ignore rules
+├── CHANGELOG.md           # Version history
+└── website/               # This website files
+    ├── index.html
+    ├── features.html
+    ├── getting-started.html
+    ├── styles.css
+    └── main.js</code></pre>
+            </div>
+
+            <!-- Data Storage -->
+            <div class="section-card">
+                <h2>Where Is My Data Stored?</h2>
+                <ul>
+                    <li><strong>User Accounts:</strong> <code>users.json</code> (local, encrypted passwords)</li>
+                    <li><strong>Journal Entries:</strong> <code>entries.json</code> (local, full history)</li>
+                    <li><strong>API Keys:</strong> <code>.env</code> (local, never pushed to git)</li>
+                </ul>
+                <p><strong>Privacy:</strong> All data is stored locally on your device. Nothing is sent to external servers except optional AI requests to OpenAI.</p>
+            </div>
+
+            <!-- Troubleshooting -->
+            <div class="section-card">
+                <h2>Troubleshooting</h2>
+                <h3>Issue: "ModuleNotFoundError: No module named 'openai'"</h3>
+                <p><strong>Solution:</strong> Install dependencies</p>
+                <pre><code>pip install -r requirements.txt</code></pre>
+
+                <h3>Issue: App won't start / UnicodeError</h3>
+                <p><strong>Solution:</strong> On Windows, force UTF-8 output:</p>
+                <pre><code>setx PYTHONUTF8 1
+python mental_bot.py</code></pre>
+
+                <h3>Issue: AI feature not working</h3>
+                <p><strong>Solution:</strong> Check your .env file has the correct API key and your OpenAI account has billing enabled.</p>
+
+                <h3>Issue: Can't find python or pip</h3>
+                <p><strong>Solution:</strong> Add Python to your system PATH or use the full path:</p>
+                <pre><code>C:\Users\YourName\AppData\Local\Programs\Python\Python312\python.exe mental_bot.py</code></pre>
+            </div>
+
+            <!-- FAQ -->
+            <div class="section-card">
+                <h2>Frequently Asked Questions</h2>
+                <h3>Q: Is this free?</h3>
+                <p>A: Yes! The app is open source and free. Only optional AI features require an OpenAI API key (paid).</p>
+
+                <h3>Q: Can I use this on multiple devices?</h3>
+                <p>A: Yes, but data won't sync. Export your JSON backup from one device and import it to another.</p>
+
+                <h3>Q: Can I share my data?</h3>
+                <p>A: Yes, use the export feature (option 8 or 9) to create JSON or PDF files you can share.</p>
+
+                <h3>Q: How do I back up my data?</h3>
+                <p>A: Use option 8 (Export JSON). Your <code>users.json</code> and <code>entries.json</code> files are your backups.</p>
+
+                <h3>Q: How do I uninstall?</h3>
+                <p>A: Simply delete the project folder. No system changes are made.</p>
+            </div>
+
+            <!-- Support -->
+            <div class="section-card" style="background-color: #f0f8ff; border-left: 4px solid #007bff;">
+                <h2>Need Help?</h2>
+                <ul>
+                    <li><a href="https://github.com/Prajna0274/Mental-Health-Daily-Check-in-Bot/issues" target="_blank">Report a bug on GitHub</a></li>
+                    <li><a href="https://github.com/Prajna0274/Mental-Health-Daily-Check-in-Bot" target="_blank">View source code</a></li>
+                    <li>Check the CHANGELOG.md for version updates</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mental Wellness Bot. Open source & free to use.</p>
+            <div class="footer-links">
+                <a href="https://github.com/Prajna0274/Mental-Health-Daily-Check-in-Bot" target="_blank">GitHub</a>
+                <a href="#contact">Support</a>
+                <a href="https://github.com/Prajna0274/Mental-Health-Daily-Check-in-Bot/issues" target="_blank">Report Bug</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
