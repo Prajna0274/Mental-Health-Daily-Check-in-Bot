@@ -67,6 +67,30 @@ def login():
         return render_template('login.html', error='Invalid credentials')
     return render_template('login.html')
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        users = load_users()
+        username = request.form.get('username', '').strip()
+        password = request.form.get('password', '').strip()
+        confirm = request.form.get('confirm_password', '').strip()
+        
+        if not username or not password:
+            return render_template('register.html', error='Username and password required')
+        
+        if password != confirm:
+            return render_template('register.html', error='Passwords do not match')
+        
+        if username in users:
+            return render_template('register.html', error='Username already exists')
+        
+        users[username] = password
+        save_users(users)
+        session['username'] = username
+        return redirect(url_for('dashboard'))
+    
+    return render_template('register.html')
+
 @app.route('/logout')
 def logout():
     session.pop('username', None)
