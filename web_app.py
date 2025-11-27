@@ -102,7 +102,19 @@ def dashboard():
         return redirect(url_for('login'))
     username = session['username']
     entries = [e for e in load_entries() if e.get('username') == username]
-    return render_template('dashboard.html', username=username, entries=entries)
+    
+    # Calculate stats for this week
+    last7 = datetime.now() - timedelta(days=7)
+    last7_entries = [e for e in entries if datetime.fromisoformat(e['date']) >= last7]
+    total_entries = len(last7_entries)
+    exercises_done = sum(1 for e in last7_entries if e.get('exercise') and e.get('exercise') != 'None')
+    
+    stats = {
+        'total_entries': total_entries,
+        'exercises_done': exercises_done
+    }
+    
+    return render_template('dashboard.html', username=username, entries=entries, stats=stats)
 
 @app.route('/add', methods=['GET', 'POST'])
 def add_entry():
