@@ -1,0 +1,30 @@
+# Environment variables and secrets
+.env
+.env.local
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Streamlit config backup
+.streamlit/
+
+# Generated exports (user can regenerate)
+wellness_*.json
+wellness_*.pdf
+
+# Node modules (if added later)
+node_modules/

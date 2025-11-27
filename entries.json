@@ -1,0 +1,125 @@
+[
+  {
+    "date": "2025-11-16 10:31:17.268035",
+    "mood": "😊 Happy",
+    "journal": "my name is prajna today i am very happy as i got placed in my dream company \n"
+  },
+  {
+    "date": "2025-11-16 10:31:48.158123",
+    "mood": "😊 Happy",
+    "journal": "my name is prajna today i am very happy as i got placed in my dream company \n"
+  },
+  {
+    "date": "2025-11-16 12:14:17.339306",
+    "username": "prajna",
+    "mood": "😊 Happy",
+    "journal": "today i got placed at my dream company ",
+    "sentiment": 0.0
+  },
+  {
+    "date": "2025-11-17 19:53:20.766942",
+    "username": "prajna",
+    "mood": "😰 Anxious",
+    "journal": "“I felt stressed today because I had too much work.”"
+  },
+  {
+    "date": "2025-11-26 18:56:25.480222",
+    "username": "prajna",
+    "mood": "😊 Happy",
+    "journal": "today was a extemly tireing  day but it is thrilling I  particiapted in a hackthon and got to learn so manyn new technical stuffs , it was a productive day+\n\n"
+  },
+  {
+    "date": "2025-11-26 18:57:23.045928",
+    "username": "prajna",
+    "mood": "😊 Happy",
+    "journal": "today was a extemly tireing  day but it is thrilling I  particiapted in a hackthon and got to learn so manyn new technical stuffs , it was a productive day+\n\n"
+  },
+  {
+    "date": "2025-11-26 18:58:25.571954",
+    "username": "prajna",
+    "mood": "😊 Happy",
+    "journal": "today was a extemly tireing  day but it is thrilling I  particiapted in a hackthon and got to learn so manyn new technical stuffs , it was a productive day+\n\n"
+  },
+  {
+    "date": "2025-11-26 18:59:58.157973",
+    "username": "prajna",
+    "mood": "😊 Happy",
+    "journal": "today was a extemly tireing  day but it is thrilling I  particiapted in a hackthon and got to learn so manyn new technical stuffs , it was a productive day+\n\n"
+  },
+  {
+    "date": "2025-11-26 21:28:19.741921",
+    "username": "prajna",
+    "exercise": "Breathing Exercise",
+    "unusual_breathing": true
+  },
+  {
+    "date": "2025-11-26 21:28:34.106506",
+    "username": "prajna",
+    "exercise": "Breathing Exercise",
+    "unusual_breathing": true
+  },
+  {
+    "date": "2025-11-26 21:28:41.267580",
+    "username": "prajna",
+    "exercise": "Breathing Exercise",
+    "unusual_breathing": true
+  },
+  {
+    "date": "2025-11-26 21:28:50.887088",
+    "username": "prajna",
+    "exercise": "Breathing Exercise",
+    "unusual_breathing": true
+  },
+  {
+    "date": "2025-11-26 21:29:04.159059",
+    "username": "prajna",
+    "exercise": "Breathing Exercise",
+    "unusual_breathing": true
+  },
+  {
+    "date": "2025-11-26 21:29:28.842909",
+    "username": "prajna",
+    "exercise": "Breathing Exercise",
+    "unusual_breathing": false
+  },
+  {
+    "date": "2025-11-26 21:29:48.421071",
+    "username": "prajna",
+    "exercise": "Grounding Exercise"
+  },
+  {
+    "date": "2025-11-26 21:30:17.905349",
+    "username": "prajna",
+    "exercise": "Positive Affirmation",
+    "affirmation": "This feeling will pass, and you will grow."
+  },
+  {
+    "date": "2025-11-26 21:30:33.464001",
+    "username": "prajna",
+    "exercise": "Mini Meditation"
+  },
+  {
+    "username": "prajna",
+    "date": "2025-11-27",
+    "mood": "Unknown",
+    "journal": "Breathing exercise: 2 cycles. Unusual: False",
+    "exercise": "Breathing Exercise",
+    "unusual_breathing": false
+  },
+  {
+    "username": "prajna",
+    "date": "2025-11-27",
+    "mood": "Happy",
+    "journal": "Demo CLI entry - text-based version",
+    "exercise": "None",
+    "unusual_breathing": false
+  },
+  {
+    "username": "prajna",
+    "date": "2025-11-27",
+    "mood": "Feeling great today",
+    "journal": "Happy",
+    "exercise": "Went for a 30-minute run",
+    "unusual_breathing": false
+  }
+]

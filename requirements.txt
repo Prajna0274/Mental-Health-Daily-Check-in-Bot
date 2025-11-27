@@ -1,0 +1,4 @@
+﻿openai==0.28.0
+python-dotenv==1.0.0
+textblob==0.17.1
+reportlab==4.0.7
