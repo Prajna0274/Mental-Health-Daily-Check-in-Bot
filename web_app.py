@@ -161,7 +161,13 @@ def stats():
 def exercises():
     if 'username' not in session:
         return redirect(url_for('login'))
-    return render_template('exercises.html')
+    exercises_list = {
+        "Breathing Exercise": "Take slow, deep breaths. Inhale for 4 counts, hold for 4, exhale for 4. Repeat 5 times.",
+        "Grounding Technique": "Notice 5 things you see, 4 you can touch, 3 you hear, 2 you smell, 1 you taste.",
+        "Positive Affirmation": "Repeat: 'I am capable, I am worthy, I am strong.' Focus on the words and let them sink in.",
+        "Mini Meditation": "Sit quietly for 2 minutes. Focus on your breath and let thoughts pass without judgment."
+    }
+    return render_template('exercises.html', exercises=exercises_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
