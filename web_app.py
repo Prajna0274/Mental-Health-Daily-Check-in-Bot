@@ -137,7 +137,7 @@ def add_entry():
         entries.append(entry)
         save_entries(entries)
         return redirect(url_for('dashboard'))
-    return render_template('add.html')
+    return render_template('add_entry.html')
 
 @app.route('/entries')
 def list_entries():
@@ -166,8 +166,15 @@ def stats():
     last7_entries = [e for e in entries if datetime.fromisoformat(e['date']) >= last7]
     total = len(last7_entries)
     avg_sent = sum(e.get('sentiment', 0) for e in last7_entries) / max(1, total)
-    exercises = sum(1 for e in last7_entries if e.get('exercise') and e.get('exercise') != 'None')
-    return render_template('stats.html', total=total, avg_sent=avg_sent, exercises=exercises)
+    exercises_count = sum(1 for e in last7_entries if e.get('exercise') and e.get('exercise') != 'None')
+    
+    stats_data = {
+        'total_entries': total,
+        'avg_sentiment': round(avg_sent, 2),
+        'exercises_done': exercises_count
+    }
+    
+    return render_template('stats.html', stats=stats_data)
 
 @app.route('/exercises')
 def exercises():
